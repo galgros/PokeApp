@@ -1,0 +1,51 @@
+<div data-role="page" class="poke-search" id="pokeSearch-page" style="text-align: center;">
+  <div data-role="header" data-theme="b">
+    <h2>Poke-Search</h2>
+  </div>
+  <div data-role="main" class="ui-content">
+    <form id="pokeForm" action="#pokeDetails-page" [formGroup]="form" (ngSubmit)="pokeSubmit(form.value)" method="post">
+      <div>
+        <input type="text" name="pokeInput" id="pokeInput" formControlName="nameOrNumber" placeholder="Name/Number" value="">
+      </div>
+      <br>
+      <div>
+        <button class="btn btn-info" type="submit">Search</button>
+      </div>
+    </form>
+    <div>
+      <ul data-role="listview" data-inset="true" id="pokeDetails">
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="pokemon !== null">
+  <h3>#{{ pokemon.id }} - {{ pokemon.name }}</h3>
+  <p>Type : {{ pokemon.types[0].type.name }}</p>
+  <p>Base XP : {{ pokemon.base_experience }}</p>
+  <img src="{{ pokemon.sprites.front_default }}">
+  <table class="table table-striped">
+    <tbody>
+    <tr>
+      <th scope="col">Primary Ability</th>
+      <th scope="col">Secondary Ability</th>
+    </tr>
+    <tr>
+      <td>{{ pokemon.abilities[0].ability.name }}</td>
+      <td *ngIf="pokemon.abilities.length > 0">{{ pokemon.abilities[1].ability.name }}</td>
+    </tr>
+    <tr>
+      <th scope="col">height</th>
+      <th scope="col">weight</th>
+    </tr>
+    <tr>
+      <td>{{ pokemon.height }}</td>
+      <td>{{ pokemon.weight }}</td>
+    </tr>
+    </tbody>
+  </table>
+  <ul>
+    <li *ngFor="let move  of pokemon.moves">{{ move.move.name }}</li>
+  </ul>
+</div>
+

@@ -1,0 +1,108 @@
+.poke-list {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  button {
+    margin: 5px;
+  }
+}
+
+.poke-search {
+  text-align: center;
+}
+
+.pkm-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .pkm-card {
+    width: 240px;
+    height: 330px;
+    padding: 10px;
+    margin: 5px;
+    border: solid yellow 5px;
+    box-shadow: black 0px 0px 5px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-image: url("https://www.transparenttextures.com/patterns/clean-gray-paper.png");
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      padding: 0px 15px;
+      margin: 0 5px 5px 5px;
+      background-color: white;
+      transform: skewX(-10deg);
+      box-shadow: black 0 0 5px -1px;
+      border-radius: 3px;
+    }
+
+    .img-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      height: 110px;
+      background-color: antiquewhite;
+      background-image: url("https://www.transparenttextures.com/patterns/arches.png");
+      border-bottom: solid #dfdfdf 3px;
+      border-right: solid #ababab 3px;
+      border-top: solid goldenrod 3px;
+      border-left: solid yellow 3px;
+      box-shadow: inset black 0 0 4px;
+
+      .pkm-type {
+        position: absolute;
+        margin-left: 146px;
+        width: 70px;
+        background-color: white;
+        margin-top: -5px;
+        font-size: 12px;
+        opacity: 0.7;
+        padding: 2px;
+        border-radius: 19px;
+      }
+
+      img {
+        z-index: 1;
+      }
+
+      .pkm-sizes {
+        position: absolute;
+        width: 185px;
+        line-height: 1;
+        margin-top: 84px;
+
+        small {
+          text-shadow: #dfdfdf 1px 1px 10px;
+        }
+      }
+
+      div {
+        margin-top: -15px;
+
+        small {
+          font-size: 10px;
+        }
+      }
+    }
+
+    .abilities {
+      text-align: left;
+      padding: 10px;
+      margin: 0px 5px;
+      line-height: 1;
+      font-size: 12px;
+    }
+
+    .line {
+      margin: auto;
+      height: 1px;
+      width: 80%;
+      background-color: gray;
+    }
+  }
+}
