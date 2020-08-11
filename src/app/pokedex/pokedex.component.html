@@ -1,35 +1,42 @@
 <div class="poke-list">
   <div>
     <button class="btn btn-info" type="button" (click)="onPreviousPage(1)"> < 1</button>
-    <button class="btn btn-info" type="button" (click)="onPreviousPage(5)"> < 5 </button>
+    <button class="btn btn-info" type="button" (click)="onPreviousPage(5)"> < 5</button>
     <button class="btn btn-info" type="button" [disabled]="true">page {{resultPage}}</button>
-    <button class="btn btn-info" type="button" (click)="onNextPage(5)"> 5 > </button>
-    <button class="btn btn-info" type="button" (click)="onNextPage(1)"> 1 > </button>
+    <button class="btn btn-info" type="button" (click)="onNextPage(5)"> 5 ></button>
+    <button class="btn btn-info" type="button" (click)="onNextPage(1)"> 1 ></button>
   </div>
 
   <div class="pkm-list-container">
-    <div *ngFor="let pkm of pokemon, let i = index" class="pkm-card" [ngStyle]="{backgroundColor: getBgColor(pkm.info.types[0].type.name)}">
+    <div *ngFor="let pkm of pokemon, let i = index" class="pkm-card"
+         [ngStyle]="{backgroundColor: getBgColor(pkm.info.types[0].type.name)}">
       <div class="card-top">
         <span
           *ngFor="let names of pkm.description[0][i]?.names, let index = index">
-          <strong *ngIf="pkm.description[0][i]?.names[index]?.language.name === 'fr'">{{ pkm.description[0][i]?.names[index]?.name }}</strong>
+          <strong
+            *ngIf="pkm.description[0][i]?.names[index]?.language.name === 'fr'">{{ pkm.description[0][i]?.names[index]?.name }}</strong>
         </span>
         <span><small>pv</small>{{ pkm.info.base_experience }}</span>
       </div>
-      <div class="img-container">
-        <div class="pkm-type">{{ pkm.info.types[0].type.name | titlecase }}</div>
-        <img src="{{ pkm.info.sprites.front_default }}">
-        <div class="pkm-sizes">
-          <small>poids: {{pkm.info.weight}}kg -</small>
-          <small>- taille: {{pkm.info.height * 12.5}}cm</small>
+      <a (click)="onSelectCard(pkm.info.id, resultPage)" class="card-href">
+        <div class="img-container">
+        <span *ngFor="let types of pkm.type[0][i]?.names, let index = index">
+          <div class="pkm-type"
+               *ngIf="pkm.type[0][i]?.names[index]?.language.name ==='fr'">{{ pkm.type[0][i]?.names[index]?.name | titlecase }}</div>
+        </span>
+          <img src="{{ pkm.info.sprites.front_default }}">
+          <div class="pkm-sizes">
+            <small>poids: {{pkm.info.weight}}kg -</small>
+            <small>- taille: {{pkm.info.height * 12.5}}cm</small>
+          </div>
         </div>
-      </div>
+      </a>
       <div>
         <div class="abilities">
           {{ pkm.abilities[0][2 * i]?.names[3].name }}
           <small>{{ pkm.abilities[0][2 * i]?.flavor_text_entries[11].language.name == "fr" ?
-          pkm.abilities[0][2 * i]?.flavor_text_entries[11].flavor_text :
-          pkm.abilities[0][2 * i]?.flavor_text_entries[16].flavor_text }}</small>
+            pkm.abilities[0][2 * i]?.flavor_text_entries[11].flavor_text :
+            pkm.abilities[0][2 * i]?.flavor_text_entries[16].flavor_text }}</small>
         </div>
         <div class="line"></div>
         <div class="abilities">
@@ -45,9 +52,9 @@
 
   <div>
     <button class="btn btn-info" type="button" (click)="onPreviousPage(1)"> < 1</button>
-    <button class="btn btn-info" type="button" (click)="onPreviousPage(5)"> < 5 </button>
+    <button class="btn btn-info" type="button" (click)="onPreviousPage(5)"> < 5</button>
     <button class="btn btn-info" type="button" [disabled]="true">page {{resultPage}}</button>
-    <button class="btn btn-info" type="button" (click)="onNextPage(5)"> 5 > </button>
-    <button class="btn btn-info" type="button" (click)="onNextPage(1)"> 1 > </button>
+    <button class="btn btn-info" type="button" (click)="onNextPage(5)"> 5 ></button>
+    <button class="btn btn-info" type="button" (click)="onNextPage(1)"> 1 ></button>
   </div>
 </div>

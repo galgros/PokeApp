@@ -6,12 +6,17 @@ import {IndexComponent} from "./index/index.component";
 import {PokemonComponent} from "./pokemon/pokemon.component";
 import {PokedexComponent} from "./pokedex/pokedex.component";
 import {SinglePokemonComponent} from "./single-pokemon/single-pokemon.component";
+import {LoginComponent} from "./login/login.component";
+import {ChooseCardsComponent} from "./choose-cards/choose-cards.component";
+import {AuthGardService} from "./services/auth-guard.service";
 
 const routes: Routes = [
   { path: "", component: IndexComponent },
+  { path: "app-login", component: LoginComponent },
   { path: "app-index", component: IndexComponent },
+  { path: "app-choose-cards", canActivate: [AuthGardService], component: ChooseCardsComponent },
   { path: "app-pokedex/:page", component: PokedexComponent },
-  { path: "app-single-pokemon", component: SinglePokemonComponent },
+  { path: "app-single-pokemon/:page/:id", component: SinglePokemonComponent },
   { path: "app-pokemon", component: PokemonComponent },
   { path: "**", component: E404Component },
 ];

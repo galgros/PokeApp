@@ -1,20 +1,24 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav id="navbar" class="navbar navbar-expand-lg" [ngClass]="isDarkMode('nav')">
   <a class="navbar-brand" routerLink="/app-index">PokeApp</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="true" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/app-pokedex/1">Pokedex</a>
+        <a class="nav-link" data-toggle="collapse" data-target="#navbarNav" routerLink="/app-pokedex/1">Pokedex</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/app-single-pokemon">Pokemon</a>
+        <a class="nav-link" data-toggle="collapse" data-target="#navbarNav" routerLink="/app-pokemon">Pokemon</a>
       </li>
     </ul>
+    <button class="btn btn-dark btn-nav" data-toggle="collapse" data-target="#navbarNav" type="button" (click)="onLogout()" *ngIf="getAuth()">Déconnexion</button>
+    <button class="btn btn-dark btn-nav" data-toggle="collapse" data-target="#navbarNav" type="button" routerLink="/app-login" *ngIf="!getAuth()">Jouer</button>
+    <button class="btn btn-dark btn-nav" type="button" (click)="onDarkMode()" *ngIf="!darkMode">Darkmode</button>
+    <button class="btn btn-light btn-nav" type="button" (click)="onDarkMode()" *ngIf="darkMode">Lightmode</button>
   </div>
 </nav>
-<main>
+<main [ngClass]="isDarkMode('main')">
   <router-outlet></router-outlet>
 </main>
 

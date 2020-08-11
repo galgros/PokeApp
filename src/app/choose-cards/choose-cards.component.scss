@@ -1,3 +1,19 @@
+.btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    margin: 10px;
+    width: 100px;
+  }
+}
+
+h2 {
+  text-align: center;
+  margin: 40px;
+}
+
 .poke-list {
   text-align: center;
   display: flex;
