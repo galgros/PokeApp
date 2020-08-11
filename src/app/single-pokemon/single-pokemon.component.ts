@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {bgColorService} from "../services/bgColor.service";
-import {ActivatedRoute, Route, Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import * as $ from 'jquery';
 
 @Component({

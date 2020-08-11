@@ -13,7 +13,7 @@
       </li>
     </ul>
     <button class="btn btn-dark btn-nav" data-toggle="collapse" data-target="#navbarNav" type="button" (click)="onLogout()" *ngIf="getAuth()">Déconnexion</button>
-    <button class="btn btn-dark btn-nav" data-toggle="collapse" data-target="#navbarNav" type="button" routerLink="/app-login" *ngIf="!getAuth()">Jouer</button>
+    <button class="btn btn-dark btn-nav" data-toggle="collapse" data-target="#navbarNav" type="button" routerLink="/app-choose-cards">Jouer</button>
     <button class="btn btn-dark btn-nav" type="button" (click)="onDarkMode()" *ngIf="!darkMode">Darkmode</button>
     <button class="btn btn-light btn-nav" type="button" (click)="onDarkMode()" *ngIf="darkMode">Lightmode</button>
   </div>

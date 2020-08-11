@@ -4,7 +4,7 @@
 <h2 *ngIf="textIndex === 2"><small>"vous obtenez 124xp"</small></h2>
 <h2 *ngIf="textIndex === 3">Bonne Chance {{ getName() }}!!</h2>
 <div *ngIf="textIndex <= 3" class="btn-container">
-  <button class="btn btn-dark" (click)="decrementTextIndex()">Precedent</button>
+  <button *ngIf="textIndex !== 0" class="btn btn-dark" (click)="decrementTextIndex()">Precedent</button>
   <button class="btn btn-dark" (click)="incrementTextIndex()">Suivant</button>
 </div>
 <h2 *ngIf="textIndex === 4">Choisis tes cartes</h2>
@@ -28,7 +28,7 @@
         </span>
           <img src="{{ pkm.info.sprites.front_default }}">
           <div class="pkm-sizes">
-            <small>poids: {{pkm.info.weight}}kg -</small>
+            <small>poids: {{pkm.info.weight / 2}}kg -</small>
             <small>- taille: {{pkm.info.height * 12.5}}cm</small>
           </div>
         </div>

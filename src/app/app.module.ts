@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { E404Component } from './e404/e404.component';
 import { IndexComponent } from './index/index.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormBuilder, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { PokemonComponent } from './pokemon/pokemon.component';
 import {CardService} from "./services/card.service";
 import { PokedexComponent } from './pokedex/pokedex.component';
@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 import {AuthGardService} from "./services/auth-guard.service";
 import { ChooseCardsComponent } from './choose-cards/choose-cards.component';
 import {PlayerService} from "./services/player.service";
+import {RouterTestingModule} from "@angular/router/testing";
 
 @NgModule({
   declarations: [
@@ -31,13 +32,15 @@ import {PlayerService} from "./services/player.service";
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterTestingModule,
   ],
   providers: [
     CardService,
+    FormBuilder,
     bgColorService,
     AuthGardService,
-    PlayerService
+    PlayerService,
   ],
   bootstrap: [AppComponent]
 })
