@@ -26,7 +26,7 @@ import {RouterTestingModule} from "@angular/router/testing";
     PokedexComponent,
     SinglePokemonComponent,
     LoginComponent,
-    ChooseCardsComponent
+    ChooseCardsComponent,
   ],
   imports: [
     BrowserModule,

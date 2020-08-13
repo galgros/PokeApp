@@ -79,6 +79,7 @@ h2 {
 
       .pkm-type {
         position: absolute;
+        text-align: center;
         margin-left: 39px;
         width: 70px;
         background-color: white;
@@ -133,4 +134,8 @@ h2 {
 .pkm-card:hover {
   transform: scale(1.1) rotate(5deg);
   z-index: 1;
+}
+
+.disabled {
+  opacity: 0.5;
 }

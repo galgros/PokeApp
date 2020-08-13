@@ -43,16 +43,16 @@ export class AppComponent {
   }
 
   getUser() {
-    return this.authService.user
+    return this.authService.user;
   }
 
   getAuth() {
-    return this.authService.isAuth
+    return this.authService.isAuth;
   }
 
   onLogout() {
     this.authService.isAuth = false;
     this.authService.user= "";
-    this.router.navigate(['/app-index'])
+    this.router.navigate(['/app-index']);
   }
 }

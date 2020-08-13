@@ -4,6 +4,7 @@ import {AppComponent} from "../app.component";
 import {ActivatedRoute, Router} from "@angular/router";
 import * as $ from 'jquery';
 import {bgColorService} from "../services/bgColor.service";
+import {CardService} from "../services/card.service";
 
 @Component({
   selector: 'app-choose-cards',
@@ -25,67 +26,25 @@ export class ChooseCardsComponent implements OnInit {
     private router: Router,
     private bgColorService: bgColorService,
     private route: ActivatedRoute,
-    private playerService: PlayerService
+    private playerService: PlayerService,
+    private cardService: CardService,
   ) {}
 
   ngOnInit(): void {
     for (let i = 0; i < this.resultLimit; i++) {
-      this.selection.push({"id": i, "pokeId":Math.floor(Math.random() * 800), "disabled": false})
+      this.selection.push({"id": i, "nameOrNumber":Math.floor(Math.random() * 800), "disabled": false})
     }
-    this.searchList();
-  }
-
-  searchList() {
-    const param = this.selection
-
-    for (let pkm of param) {
-      const pokeURL = "http://pokeapi.co/api/v2/pokemon/" + pkm.pokeId;
-      const doc = this;
-
-      $.getJSON(pokeURL, function(data){
-        setTimeout(() => {
-          doc.pkmInfoRequest(data.abilities[0]?.ability.url);
-          doc.pkmInfoRequest(data.abilities[1]?.ability.url);
-          doc.pkmDescriptionRequest(data.species.url);
-          doc.pkmTypeRequest(data.types[0]?.type.url);
-        }, 700)
-        doc.pokemon.push({
-          "name": doc.pokemon,
-          "abilities": [
-            doc.response
-          ],
-          "description": [doc.description],
-          "type": [doc.pkmType],
-          "info": data
-        });
-      });
-    }
-  }
-
-  pkmInfoRequest(url){
-    const doc = this;
-    $.getJSON(url, function(data: object){
-      doc.response.push(data);
-    });
-  }
-
-  pkmDescriptionRequest(url){
-    const doc = this;
-    $.getJSON(url, function(data: object){
-      doc.description.push(data);
-    });
-  }
-
-  pkmTypeRequest(url){
-    const doc = this;
-    $.getJSON(url, function(data: object){
-      doc.pkmType.push(data);
-    });
+    this.pokemon = this.cardService.searchMultiplePokemon(this.selection)
   }
 
   onSelectCard(pkm, index) {
-    this.selection[index].disabled = true;
-    this.playerService.setCards(pkm);
+    if (this.selection[index].disabled === false && this.playerService.myCards.length < 3) {
+      this.selection[index].disabled = true;
+      this.playerService.setCards(pkm, index);
+    } else {
+      this.selection[index].disabled = false;
+      this.playerService.removeCard(index);
+    }
   }
 
   getBgColor(type) {
@@ -96,6 +55,13 @@ export class ChooseCardsComponent implements OnInit {
     return this.playerService.name
   }
 
+  getDisabled(index) {
+    if (this.selection[index].disabled === true ) {
+      return "disabled";
+    }
+    return "";
+  }
+
   incrementTextIndex() {
     this.textIndex ++;
   }
@@ -103,5 +69,4 @@ export class ChooseCardsComponent implements OnInit {
   decrementTextIndex() {
     this.textIndex --;
   }
-
 }

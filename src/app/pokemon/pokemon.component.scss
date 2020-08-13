@@ -1,5 +1,6 @@
 .pkm-card {
   text-align: center;
+  color: black;
   width: 240px;
   height: 330px;
   padding: 10px;
@@ -92,6 +93,10 @@
   }
 }
 
+#pokeSearch-page {
+  margin: 20px;
+}
+
 .btn {
   margin: 0 10px;
 }
@@ -102,6 +107,3 @@ input {
   padding: 5px;
 }
 
-#pokeSearch-page {
-  margin: 20px;
-}

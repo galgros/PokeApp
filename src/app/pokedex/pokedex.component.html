@@ -7,22 +7,22 @@
     <button class="btn btn-info" type="button" (click)="onNextPage(1)"> 1 ></button>
   </div>
 
-  <div class="pkm-list-container">
-    <div *ngFor="let pkm of pokemon, let i = index" class="pkm-card"
-         [ngStyle]="{backgroundColor: getBgColor(pkm.info.types[0].type.name)}">
-      <div class="card-top">
+  <div *ngIf="pokemon !== null">
+    <div class="pkm-list-container">
+      <div *ngFor="let pkm of pokemon, let i = index" class="pkm-card"
+           [ngStyle]="{backgroundColor: getBgColor(pkm.type[i]?.name)}">
+        <div class="card-top">
         <span
-          *ngFor="let names of pkm.description[0][i]?.names, let index = index">
+          *ngFor="let names of pkm.species[i]?.names, let index = index">
           <strong
-            *ngIf="pkm.description[0][i]?.names[index]?.language.name === 'fr'">{{ pkm.description[0][i]?.names[index]?.name }}</strong>
+            *ngIf="names.language.name === 'fr'">{{ names.name }}</strong>
         </span>
-        <span><small>pv</small>{{ pkm.info.base_experience }}</span>
-      </div>
-      <a (click)="onSelectCard(pkm.info.id, resultPage)" class="card-href">
+          <span><small>pv</small>{{ pkm.info.base_experience }}</span>
+        </div>
         <div class="img-container">
-        <span *ngFor="let types of pkm.type[0][i]?.names, let index = index">
+        <span *ngFor="let types of pkm.type[i]?.names, let index = index">
           <div class="pkm-type"
-               *ngIf="pkm.type[0][i]?.names[index]?.language.name ==='fr'">{{ pkm.type[0][i]?.names[index]?.name | titlecase }}</div>
+               *ngIf="pkm.type[i].names[index]?.language.name ==='fr'">{{ pkm.type[i].names[index]?.name | titlecase }}</div>
         </span>
           <img src="{{ pkm.info.sprites.front_default }}">
           <div class="pkm-sizes">
@@ -30,22 +30,28 @@
             <small>- taille: {{pkm.info.height * 12.5}}cm</small>
           </div>
         </div>
-      </a>
-      <div>
-        <div class="abilities">
-          {{ pkm.abilities[0][2 * i]?.names[3].name }}
-          <small>{{ pkm.abilities[0][2 * i]?.flavor_text_entries[11].language.name == "fr" ?
-            pkm.abilities[0][2 * i]?.flavor_text_entries[11].flavor_text :
-            pkm.abilities[0][2 * i]?.flavor_text_entries[16].flavor_text }}</small>
+        <div>
+          <div class="abilities">
+            {{ pkm.abilities[2 * i]?.names[3].name }}
+            <small>{{ pkm.abilities[2 * i]?.flavor_text_entries[11].language.name == "fr" ?
+              pkm.abilities[2 * i]?.flavor_text_entries[11].flavor_text :
+              pkm.abilities[2 * i]?.flavor_text_entries[16].flavor_text }}</small>
+          </div>
+          <div class="line"></div>
+          <div class="moves abilities">
+            <div *ngFor="let move of pkm.moves">
+              <div *ngIf="move.related_to === pkm.name">
+                <div *ngFor="let names of move.data.names, let index = index">
+                  <div>
+                    <small *ngIf="names.language.name === 'fr'">{{ names.name }}</small>
+                  </div>
+                  <div>
+                    <small *ngIf="names.language.name === 'fr'"><strong>{{ move.data.pp }}</strong></small>
+                  </div>                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="line"></div>
-        <div class="abilities">
-          {{ pkm.abilities[0][2 * i + 1]?.names[3].name }}
-          <small>{{ pkm.abilities[0][2 * i + 1]?.flavor_text_entries[11].language.name == "fr" ?
-            pkm.abilities[0][2 * i + 1]?.flavor_text_entries[11].flavor_text :
-            pkm.abilities[0][2 * i + 1]?.flavor_text_entries[16].flavor_text }}</small>
-        </div>
-        <div class="line"></div>
       </div>
     </div>
   </div>
