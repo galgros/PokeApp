@@ -64,6 +64,15 @@ export class ChooseCardsComponent implements OnInit {
 
   incrementTextIndex() {
     this.textIndex ++;
+    if (this.textIndex === 5) {
+      this.findPlayer();
+    }
+  }
+
+  findPlayer() {
+    setTimeout(()=>{
+      this.textIndex++;
+    }, 3000);
   }
 
   decrementTextIndex() {

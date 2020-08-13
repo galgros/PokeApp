@@ -12,6 +12,7 @@ import {PlayerService} from "../services/player.service";
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  error;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,10 +30,16 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(name) {
-    this.authGard.user = name;
-    this.playerService.name = name;
-    this.authGard.isAuth = true;
-    this.router.navigate(['/app-choose-cards']);
+    if (name === '') {
+      this.error = 'error_field';
+    } else if (name.length > 12) {
+      this.error = 'error_size';
+    } else {
+      this.authGard.user = name;
+      this.playerService.name = name;
+      this.authGard.isAuth = true;
+      this.router.navigate(['/app-choose-cards']);
+    }
   }
 }
 

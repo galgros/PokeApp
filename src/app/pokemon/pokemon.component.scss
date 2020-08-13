@@ -43,14 +43,16 @@
 
     .pkm-type {
       position: absolute;
-      margin-left: 39px;
+      margin-left: 35px;
       width: 70px;
       background-color: white;
-      margin-top: -5px;
+      margin-top: -9px;
       font-size: 12px;
       opacity: 0.7;
       padding: 2px;
-      border-radius: 19px;
+      border-radius: 4px;
+      box-shadow: black 0 0 6px;
+      transform: skewX(-10deg);
     }
 
     img {
@@ -79,7 +81,7 @@
 
   .abilities {
     text-align: left;
-    padding: 10px;
+    padding: 7px;
     margin: 0px 5px;
     line-height: 1;
     font-size: 12px;
@@ -91,6 +93,12 @@
     width: 80%;
     background-color: gray;
   }
+}
+
+.pkm-move {
+  display: flex;
+  justify-content: space-between;
+  margin: 3px 60px 3px 0px;
 }
 
 #pokeSearch-page {
@@ -105,5 +113,18 @@ input {
   border-radius: 5px;
   border-bottom: solid red;
   padding: 5px;
+  min-width: 250px;
+}
+
+.pkm-power {
+  color: red;
+  background-color: white;
+  padding: 0 10px;
+  border-radius: 5px;
+  box-shadow: black 0 0 1px;
+}
+
+.dark {
+  color: yellow;
 }
 

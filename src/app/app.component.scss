@@ -1,5 +1,5 @@
 main {
-  padding-top: 50px;
+  padding: 55px 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,13 +19,15 @@ main {
 }
 
 .darkmode {
-  background-color: black;
+  background-color: #141017;
   color: #dfdfdf;
+  background-image: url("https://www.transparenttextures.com/patterns/hexellence.png");
 }
 
 .lightmode {
   background-color: #dfdfdf;
   color: black;
+  background-image: url("https://www.transparenttextures.com/patterns/light-honeycomb-dark.png");
 }
 
 .btn {

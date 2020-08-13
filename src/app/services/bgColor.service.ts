@@ -27,7 +27,7 @@ export class bgColorService {
       case "ground":
         return "#caa37c"
       case "dark":
-        return "#444444"
+        return "#282828"
       case "rock":
         return "#afafaf"
       case "steel":

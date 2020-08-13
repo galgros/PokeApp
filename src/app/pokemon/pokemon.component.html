@@ -45,10 +45,13 @@
         <small>- taille: {{pkm.info.height * 12.5}}cm</small>
       </div>
     </div>
-    <div>
+    <div class="{{ pkm.type[i]?.name }}">
       <div class="abilities">
-        {{ pkm.abilities[2 * i]?.names[3].name }}
-        <small>{{ pkm.abilities[2 * i]?.flavor_text_entries[11].language.name == "fr" ?
+        <div style="margin-bottom: 4px; opacity: 0.8;">
+          <small class="pkm-power"><strong>Pouvoir Pokémon : </strong></small>
+        </div>
+        <small><strong> {{ pkm.abilities[2 * i]?.names[3].name }}</strong></small>
+        <small> : {{ pkm.abilities[2 * i]?.flavor_text_entries[11].language.name == "fr" ?
           pkm.abilities[2 * i]?.flavor_text_entries[11].flavor_text :
           pkm.abilities[2 * i]?.flavor_text_entries[16].flavor_text }}</small>
       </div>
@@ -57,15 +60,19 @@
         <div *ngFor="let move of pkm.moves">
           <div *ngIf="move.related_to === pkm.name">
             <div *ngFor="let names of move.data.names, let index = index">
-              <div>
-                <small *ngIf="names.language.name === 'fr'">{{ names.name }}</small>
-              </div>
-              <div>
-                <small *ngIf="names.language.name === 'fr'"><strong>{{ move.data.pp }}</strong></small>
+              <div *ngIf="names.language.name === 'fr'" class="pkm-move">
+                <div>
+                  <small *ngIf="names.language.name === 'fr'">{{ names.name }}</small>
+                </div>
+                <div>
+                  <small *ngIf="names.language.name === 'fr'"><strong>{{ move.data.pp }}+</strong></small>
+                </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <div class="line"></div>
     </div>
   </div>
 </div>

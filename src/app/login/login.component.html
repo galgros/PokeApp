@@ -2,7 +2,9 @@
   <h2 style="text-align: center">Entre ton nom pour jouer</h2>
   <form class="form-group" #form="ngForm" (ngSubmit)="onSubmit(form.value.name)">
     <label for="name"></label>
-    <input type="text" id="name" name="name" ngModel class="form-control col-md-6 offset-md-3" placeholder="Votre nom">
+    <input type="text" id="name" name="name" ngModel class="form-control" placeholder="Votre nom" required="required">
+    <div *ngIf="error === 'error_field'" [ngStyle]="{color: 'red'}">Champ requis</div>
+    <div *ngIf="error === 'error_size'" [ngStyle]="{color: 'red'}">Votre nom doit comporter moins de 12 lettres</div>
     <button class="btn btn-success" type="submit">Jouer</button>
   </form>
 </div>
